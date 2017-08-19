@@ -7,6 +7,11 @@ const Home = () => (
     <p>
       <Link to="/musiclist">MusicList</Link>
     </p>
+
+    <hr />
+
+    <p>Everythink in the world</p>
+    <button>播放</button>
   </div>
 );
 
