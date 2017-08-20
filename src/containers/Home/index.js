@@ -1,24 +1,33 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import Home from '../../components/Home';
 
 import {
   togglePlay,
+  playPrev,
+  playNext,
 } from '../../actions';
 
-const mapStateToProps = ({musicList, currentMusicItem, playState}) => ({
+const mapStateToProps = ({ musicList, currentMusicId, playState }) => ({
   musicList,
-  currentMusicItem,
+  currentMusicId,
   playState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   homeTogglePlay: () => {
     dispatch(togglePlay());
-  }
+  },
+  homePlayPrev: () => {
+    dispatch(playPrev());
+  },
+  homePlayNext: () => {
+    dispatch(playNext());
+  },
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)();
+)(Home));

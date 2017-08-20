@@ -1,13 +1,27 @@
+/* global $ */
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Home from './components/Home';
-import MusicList from './components/MusicList';
+import Home from './containers/Home';
+import MusicList from './containers/MusicList';
 
 class App extends Component {
+  componentDidMount() {
+    let { musicList, currentMusicId } = this.props;
+
+    $('#player')
+      .jPlayer({
+        supplied: 'mp3'
+      })
+      .jPlayer('setMedia', {
+        mp3: musicList.filter(music => music.id === currentMusicId)[0].file
+      });
+  }
+
   render() {
     return (
       <Router>
@@ -20,4 +34,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ musicList, currentMusicId }) => ({
+  musicList,
+  currentMusicId,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(App);

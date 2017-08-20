@@ -1,7 +1,11 @@
 const TOGGLE_PLAY = 'TOGGLE_PLAY';
 const PLAY_ONE = 'PLAY_ONE';
+const PLAY_PREV = 'PLAY_PREV';
+const PLAY_NEXT = 'PLAY_NEXT';
 
 export {
   TOGGLE_PLAY,
   PLAY_ONE,
+  PLAY_PREV,
+  PLAY_NEXT,
 };
