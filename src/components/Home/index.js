@@ -10,6 +10,7 @@ const Home = () => (
 
     <hr />
 
+    {/* TODO: stop writing here */}
     <p>Everythink in the world</p>
     <button>播放</button>
   </div>
