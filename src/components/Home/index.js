@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = ({ musicList, currentMusicId, playState, homeTogglePlay }) => (
+const Home = ({ musicList, currentMusicId, playState, playMusic, homeTogglePlay, homePlayPrev, homePlayNext, }) => (
   <div>
     <h2>Home</h2>
     <p>
@@ -11,7 +11,7 @@ const Home = ({ musicList, currentMusicId, playState, homeTogglePlay }) => (
 
     <hr />
 
-    <p>{musicList.filter(music => music.id === currentMusicId)[0].name}</p>
+    <p>{musicList[currentMusicId].name}</p>
     <button
       onClick={() => {
         playState ? $('#player').jPlayer('pause') : $('#player').jPlayer('play');
@@ -23,14 +23,14 @@ const Home = ({ musicList, currentMusicId, playState, homeTogglePlay }) => (
     <div>
       <button
         onClick={() => {
-          homePlayPrev();
+          homePlayPrev(musicList, currentMusicId, playMusic);
         }}
       >
         上一首
       </button>
       <button
         onClick={() => {
-          homePlayNext();
+          homePlayNext(musicList, currentMusicId, playMusic);
         }}
       >
         下一首

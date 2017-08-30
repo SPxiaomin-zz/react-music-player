@@ -18,7 +18,7 @@ class App extends Component {
         supplied: 'mp3'
       })
       .jPlayer('setMedia', {
-        mp3: musicList.filter(music => music.id === currentMusicId)[0].file
+        mp3: musicList[currentMusicId].file
       });
   }
 

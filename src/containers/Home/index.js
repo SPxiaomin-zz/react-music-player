@@ -9,20 +9,27 @@ import {
   playNext,
 } from '../../actions';
 
-const mapStateToProps = ({ musicList, currentMusicId, playState }) => ({
+const mapStateToProps = ({ musicList, currentMusicId, playState, playMusic }) => ({
   musicList,
   currentMusicId,
   playState,
+  playMusic,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   homeTogglePlay: () => {
     dispatch(togglePlay());
   },
-  homePlayPrev: () => {
+  homePlayPrev: (musicList, currentMusicId, playMusic) => {
+    let index = (currentMusicId - 1 + musicList.length) % musicList.length;
+    playMusic(musicList[index]);
+
     dispatch(playPrev());
   },
-  homePlayNext: () => {
+  homePlayNext: (musicList, currentMusicId, playMusic) => {
+    let index = (currentMusicId + 1) % musicList.length;
+    playMusic(musicList[index]);
+
     dispatch(playNext());
   },
 });

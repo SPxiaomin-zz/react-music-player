@@ -9,17 +9,15 @@ import {
 const initState = {
   musicList: [
     {
-      id: 1,
       name: 'Everything in the World',
       file: 'http://7xkinp.com1.z0.glb.clouddn.com/%E6%9B%B2%E5%A9%89%E5%A9%B7%20-%20Everything%20In%20The%20World.mp3',
     },
     {
-      id: 2,
       name: 'Mockingbird',
       file: 'http://7xkinp.com1.z0.glb.clouddn.com/Mockingbird.mp3',
     },
   ],
-  currentMusicId: 1,
+  currentMusicId: 0,
   playState: false,
   playMusic(music) {
     $('#player')
@@ -44,14 +42,18 @@ export default (state = initState, action) => {
         playState: true,
       };
     case PLAY_PREV:
+      let len = state.musicList.length;
+
       return {
         ...state,
-        currentMusicId: --currentMusicId,
+        currentMusicId: (--state.currentMusicId + len) % len,
+        playState: true,
       };
     case PLAY_NEXT:
       return {
         ...state,
-        currentMusicId: ++currentMusicId,
+        currentMusicId: (++state.currentMusicId) % state.musicList.length,
+        playState: true,
       };
     default:
       return state;

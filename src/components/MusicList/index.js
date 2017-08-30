@@ -32,10 +32,11 @@ const MusicList = ({ musicList, currentMusicId, playMusic, musicListPlayOne }) =
             <MusicItem
               key={key}
               {...music}
+              id={key}
               currentMusicId={currentMusicId}
               onClick={() => {
                 playMusic(music);
-                musicListPlayOne(music.id);
+                musicListPlayOne(key);
               }}
             />
           );
